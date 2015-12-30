@@ -2,6 +2,9 @@
   "name": "web-boilerplate",
   "version": "0.0.1",
   "description": "The purpose of this project is to try the new web technologies",
+  "scripts": {
+    "start": "node server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gfpacheco/web-boilerplate.git"
@@ -9,5 +12,8 @@
   "bugs": {
     "url": "https://github.com/gfpacheco/web-boilerplate/issues"
   },
-  "homepage": "https://github.com/gfpacheco/web-boilerplate#readme"
+  "homepage": "https://github.com/gfpacheco/web-boilerplate#readme",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
 }
