@@ -1,0 +1,13 @@
+{
+  "name": "web-boilerplate",
+  "version": "0.0.1",
+  "description": "The purpose of this project is to try the new web technologies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gfpacheco/web-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gfpacheco/web-boilerplate/issues"
+  },
+  "homepage": "https://github.com/gfpacheco/web-boilerplate#readme"
+}
