@@ -20,9 +20,10 @@ const listen = () => {
     const port = process.env.PORT || 5000;
 
     app.use(express.static('build'));
+    app.use(express.static('app/public'));
 
     app.get('*', (req, res) => {
-      res.sendFile(path.join(__dirname, 'index.html'));
+      res.sendFile(path.join(__dirname, 'app/public/index.html'));
     });
 
     app.listen(port, err => {
