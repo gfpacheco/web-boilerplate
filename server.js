@@ -1,41 +1,40 @@
-var path = require('path');
-var express = require('express');
-var webpack = require('webpack');
-var webpackConfig = require('./webpack.config');
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const webpackConfig = require('./webpack.config');
 
-var pack = function(callback) {
+const pack = callback => {
   console.info('Packing things up...');
-  webpack(webpackConfig).run(function(err, stats) {
-    callback(err || stats.compilation.errors[0]);
+  return new Promise((resolve, reject) => {
+    webpack(webpackConfig).run((err, stats) => {
+      err = err || stats.compilation.errors[0];
+      err ? reject(err) : resolve()
+    });
   });
 };
 
-var listen = function(callback) {
+const listen = () => {
   console.info('Starting server...');
-  var app = express();
-  var port = process.env.PORT || 5000;
+  return new Promise((resolve, reject) => {
+    const app = express();
+    const port = process.env.PORT || 5000;
 
-  app.use(express.static('build'));
+    app.use(express.static('build'));
 
-  app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'index.html'));
-  });
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, 'index.html'));
+    });
 
-  app.listen(port, function(err) {
-    callback(err, port);
+    app.listen(port, err => {
+      err ? reject(err) : resolve(port)
+    });
   });
 };
 
-pack(function(err) {
-  if (err) {
-    return console.error(err);
-  }
-
-  listen(function(err, port) {
-    if (err) {
-      return console.error(err);
-    }
-
+pack()
+  .then(listen)
+  .then(port => {
     console.info('Server up and listening port %s', port);
-  });
-});
+  }).catch(err => {
+    console.error(err);
+  })
