@@ -1,12 +1,21 @@
 var path = require('path');
 var express = require('express');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config');
+
+var pack = function(callback) {
+  console.info('Packing things up...');
+  webpack(webpackConfig).run(function(err, stats) {
+    callback(err || stats.compilation.errors[0]);
+  });
+};
 
 var listen = function(callback) {
   console.info('Starting server...');
   var app = express();
   var port = process.env.PORT || 5000;
 
-  app.use(express.static('.'));
+  app.use(express.static('build'));
 
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -17,10 +26,16 @@ var listen = function(callback) {
   });
 };
 
-listen(function(err, port) {
+pack(function(err) {
   if (err) {
     return console.error(err);
   }
 
-  console.info('Server up and listening port %s', port);
+  listen(function(err, port) {
+    if (err) {
+      return console.error(err);
+    }
+
+    console.info('Server up and listening port %s', port);
+  });
 });
