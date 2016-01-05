@@ -11,6 +11,7 @@ Step by step I:
 - Added an [Node][node]+[Express][express] server
 - Started using [Webpack][webpack] build tool
 - Changed server syntax to use [some of the ES6][node-es6] features
+- Added the [Redux][redux] flow
 
 [react]: https://facebook.github.io/react/
 [babel]: http://babeljs.io/
@@ -18,6 +19,7 @@ Step by step I:
 [express]: http://expressjs.com/
 [webpack]: https://webpack.github.io/
 [node-es6]: https://nodejs.org/en/docs/es6/
+[redux]: http://redux.js.org/
 
 ## Installation
 

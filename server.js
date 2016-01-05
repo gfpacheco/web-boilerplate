@@ -46,7 +46,7 @@ const listen = () => {
 pack()
   .then(listen)
   .then(port => {
-    console.info('Server up and listening port %s', port);
+    console.info('Server up and listening port %s (view it at http://localhost:%s)', port, port);
   }).catch(err => {
     console.error(err);
   })
