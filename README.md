@@ -12,6 +12,7 @@ Step by step I:
 - Started using [Webpack][webpack] build tool
 - Changed server syntax to use [some of the ES6][node-es6] features
 - Added the [Redux][redux] flow
+- Added [React Router][react-router] for navigation control
 
 [react]: https://facebook.github.io/react/
 [babel]: http://babeljs.io/
@@ -20,6 +21,7 @@ Step by step I:
 [webpack]: https://webpack.github.io/
 [node-es6]: https://nodejs.org/en/docs/es6/
 [redux]: http://redux.js.org/
+[react-router]: https://github.com/rackt/react-router
 
 ## Installation
 
