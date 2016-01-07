@@ -52,8 +52,12 @@ const development = Object.assign({}, defaults, {
 const production = Object.assign({}, defaults, {
   plugins: [
     ...defaults.plugins,
-    new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        screw_ie8: true,
+      },
+    }),
   ],
 });
 
