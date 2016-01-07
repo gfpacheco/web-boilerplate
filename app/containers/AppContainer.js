@@ -5,7 +5,7 @@ import * as HelloActions from '../actions/hello';
 
 function mapStateToProps(state) {
   return {
-    hello: state.hello
+    hello: state.hello,
   };
 }
 

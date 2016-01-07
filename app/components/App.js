@@ -4,7 +4,7 @@ class App extends Component {
 
   static propTypes = {
     hello: PropTypes.string.isRequired,
-    sayHello: PropTypes.func.isRequired
+    sayHello: PropTypes.func.isRequired,
   };
 
   render() {

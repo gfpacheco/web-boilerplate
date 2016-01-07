@@ -1,11 +1,11 @@
-var environment = process.env.NODE_ENV || 'development';
+var environment = process.env.NODE_ENV || 'development'; // eslint-disable-line
 environment = {
   raw: environment,
   isDevelopment: environment === 'development',
-  isProduction: environment === 'production'
+  isProduction: environment === 'production',
 };
 
 module.exports = {
-  environment: environment,
-  webpack: require('./webpack.config')(environment)
+  environment,
+  webpack: require('./webpack.config')(environment),
 };

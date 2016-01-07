@@ -7,4 +7,4 @@ export default function hello(state = '', action) {
     default:
       return state;
   }
-};
+}

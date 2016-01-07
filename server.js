@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
@@ -7,12 +8,17 @@ const webpackCompiler = webpack(config.webpack);
 const app = express();
 const port = process.env.PORT || 5000;
 
-const pack = callback => {
+const pack = () => {
   return new Promise((resolve, reject) => {
     console.info('Packing things up...');
     webpackCompiler.run((err, stats) => {
-      err = err || stats.compilation.errors[0];
-      err ? reject(err) : resolve()
+      const error = err || stats.compilation.errors[0];
+
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
     });
   });
 };
@@ -23,7 +29,7 @@ const listen = () => {
     if (config.environment.isDevelopment) {
       app.use(require('webpack-dev-middleware')(webpackCompiler, {
         noInfo: true,
-        publicPath: config.webpack.output.publicPath
+        publicPath: config.webpack.output.publicPath,
       }));
       app.use(require('webpack-hot-middleware')(webpackCompiler));
     }
@@ -38,15 +44,19 @@ const listen = () => {
 
     console.info('Starting server...');
     app.listen(port, err => {
-      err ? reject(err) : resolve(port)
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
     });
   });
 };
 
 pack()
   .then(listen)
-  .then(port => {
+  .then(() => {
     console.info('Server up and listening port %s (view it at http://localhost:%s)', port, port);
   }).catch(err => {
     console.error(err);
-  })
+  });
