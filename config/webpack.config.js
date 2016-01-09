@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const defaults = {
   entry: {
     app: './app/app.js',
-    styles: './app/styles/styles.js',
   },
   output: {
     path: path.join(process.cwd(), 'build'),

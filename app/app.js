@@ -7,6 +7,7 @@ import { createHistory } from 'history';
 import { syncHistory } from 'redux-simple-router';
 import reducers from './reducers';
 import AppContainer from './containers/AppContainer';
+require('./styles/styles.scss');
 
 const history = createHistory();
 const store = createStore(reducers);
