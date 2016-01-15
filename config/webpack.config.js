@@ -31,16 +31,6 @@ const development = Object.assign({}, defaults, {
     entry[key] = ['webpack-hot-middleware/client', defaults.entry[key]]; // eslint-disable-line
     return entry;
   }, {}),
-  module: {
-    loaders: defaults.module.loaders.map(loader => {
-      return Object.assign({}, loader, {
-        loaders: [
-          'react-hot',
-          ...loader.loaders,
-        ],
-      });
-    }),
-  },
   plugins: [
     ...defaults.plugins,
     new webpack.HotModuleReplacementPlugin(),
